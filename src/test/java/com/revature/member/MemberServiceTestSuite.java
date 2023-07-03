@@ -1,14 +1,7 @@
 package com.revature.member;
 
-import com.revature.utility.exceptions.InsufficientBalanceException;
-import com.revature.utility.exceptions.RecordExistsException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 
 public class MemberServiceTestSuite {
-
-
 
 
     public void test_givenFindAllMembers_ReturnAllAvailableMembers(){
