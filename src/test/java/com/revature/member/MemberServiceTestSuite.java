@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +47,19 @@ public class MemberServiceTestSuite {
     }
 
 
+    @Test
     public void test_givenGetMemberBalanceWithValidEmail_ReturnBalance(){
+        // Arrange
+        Member validMember = new Member("valid@mail.com", "password".toCharArray(), "valid_fname", "valid_lname", new BigDecimal("100.00"));
+        when(memberRepository.findById(validMember.getEmail())).thenReturn(validMember);
 
+        // Act
+        BigDecimal actualBalance = sut.getMemberBalance(validMember.getEmail());
+        verify(memberRepository, times(1)).findById(validMember.getEmail());
+        verifyNoMoreInteractions(memberRepository);
+
+        // Assert
+        Assertions.assertEquals(validMember.getBalance(), actualBalance);
     }
 
 
